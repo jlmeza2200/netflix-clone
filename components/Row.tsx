@@ -1,32 +1,30 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
-import { useRef, useState } from "react";
-import { Movie } from "../typings";
-import Thumbnail from "./Thumbnail";
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
 import { DocumentData } from 'firebase/firestore'
+import { useRef, useState } from 'react'
+import { Movie } from '../typings'
+import Thumbnail from './Thumbnail'
 
 interface Props {
-  title: string;
-  movies: Movie[] | DocumentData
+  title: string
+  movies: Movie[] | DocumentData[]
 }
 
-const Row = ({ title, movies }: Props) => {
-  const rowRef = useRef<HTMLDivElement>(null);
-  const [isMoved, setIsMoved] = useState(false);
+function Row({ title, movies }: Props) {
+  const rowRef = useRef<HTMLDivElement>(null)
+  const [isMoved, setIsMoved] = useState(false)
 
   const handleClick = (direction: string) => {
-    setIsMoved(true);
-
+    setIsMoved(true)
     if (rowRef.current) {
-      const { scrollLeft, clientWidth } = rowRef.current;
+      const { scrollLeft, clientWidth } = rowRef.current
 
       const scrollTo =
-        direction === "left"
+        direction === 'left'
           ? scrollLeft - clientWidth
-          : scrollLeft + clientWidth;
-
-      rowRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
+          : scrollLeft + clientWidth
+      rowRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' })
     }
-  };
+  }
 
   return (
     <div className="h-40 space-y-0.5 md:space-y-2">
@@ -57,4 +55,4 @@ const Row = ({ title, movies }: Props) => {
   )
 }
 
-export default Row;
+export default Row
