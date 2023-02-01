@@ -6,8 +6,7 @@ import { DocumentData } from 'firebase/firestore'
 
 interface Props {
   title: string;
-  // When using Firebase
-  movies: Movie | DocumentData
+  movies: Movie[] | DocumentData
 }
 
 const Row = ({ title, movies }: Props) => {
